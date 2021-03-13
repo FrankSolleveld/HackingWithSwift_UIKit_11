@@ -7,7 +7,6 @@
 
 /*
  CHALLENGE TIME
- 2. Try to force the Y value of new balls so they are near the top of the screen.
  3. Give players a limit of five balls. then remove the obstacles when they are hit. Can they clear all the pins with just five balls?
  */
 import SpriteKit
@@ -80,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                     ball.physicsBody?.restitution = 0.5
                     ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                    ball.position = location
+                    ball.position = CGPoint(x: location.x, y: 700)
                     ball.name = "ball"
                     addChild(ball)
                 }
