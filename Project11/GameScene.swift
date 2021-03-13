@@ -7,7 +7,6 @@
 
 /*
  CHALLENGE TIME
- 1. Our pictures have other balls than just "ballRed". Write code to use a random color each time they tap the screen.
  2. Try to force the Y value of new balls so they are near the top of the screen.
  3. Give players a limit of five balls. then remove the obstacles when they are hit. Can they clear all the pins with just five balls?
  */
@@ -75,13 +74,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody?.isDynamic = false
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
-                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                ball.physicsBody?.restitution = 0.5
-                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                ball.position = location
-                ball.name = "ball"
-                addChild(ball)
+                let balls = ["ballRed", "ballBlue", "ballCyan", "ballGreen", "ballPurple", "ballGrey", "ballYellow"]
+                if let randBall = balls.randomElement() {
+                    let ball = SKSpriteNode(imageNamed: randBall)
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    ball.physicsBody?.restitution = 0.5
+                    ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+                    ball.position = location
+                    ball.name = "ball"
+                    addChild(ball)
+                }
             }
         }
     }
