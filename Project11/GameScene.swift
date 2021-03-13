@@ -5,6 +5,12 @@
 //  Created by Frank Solleveld on 13/03/2021.
 //
 
+/*
+ CHALLENGE TIME
+ 1. Our pictures have other balls than just "ballRed". Write code to use a random color each time they tap the screen.
+ 2. Try to force the Y value of new balls so they are near the top of the screen.
+ 3. Give players a limit of five balls. then remove the obstacles when they are hit. Can they clear all the pins with just five balls?
+ */
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
