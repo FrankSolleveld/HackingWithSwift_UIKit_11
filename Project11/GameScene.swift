@@ -5,10 +5,6 @@
 //  Created by Frank Solleveld on 13/03/2021.
 //
 
-/*
- CHALLENGE TIME
- 3. Clear obstacles as the balls hit them.
- */
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -72,6 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.position = location
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
+                box.name = "box"
                 addChild(box)
             } else {
                 let balls = ["ballRed", "ballBlue", "ballCyan", "ballGreen", "ballPurple", "ballGrey", "ballYellow"]
@@ -143,6 +140,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if score != 0 {
                 score -= 1
             }
+        } else if object.name == "box" {
+            object.removeFromParent()
         }
     }
     
