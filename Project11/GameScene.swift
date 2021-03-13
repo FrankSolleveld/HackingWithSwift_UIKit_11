@@ -7,7 +7,7 @@
 
 /*
  CHALLENGE TIME
- 3. Give players a limit of five balls. then remove the obstacles when they are hit. Can they clear all the pins with just five balls?
+ 3. Clear obstacles as the balls hit them.
  */
 import SpriteKit
 
@@ -28,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
+    var ballCount = 5
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
@@ -75,13 +76,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 let balls = ["ballRed", "ballBlue", "ballCyan", "ballGreen", "ballPurple", "ballGrey", "ballYellow"]
                 if let randBall = balls.randomElement() {
-                    let ball = SKSpriteNode(imageNamed: randBall)
-                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                    ball.physicsBody?.restitution = 0.5
-                    ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                    ball.position = CGPoint(x: location.x, y: 700)
-                    ball.name = "ball"
-                    addChild(ball)
+                    if ballCount != 0 {
+                        let ball = SKSpriteNode(imageNamed: randBall)
+                        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                        ball.physicsBody?.restitution = 0.5
+                        ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+                        ball.position = CGPoint(x: location.x, y: 700)
+                        ball.name = "ball"
+                        addChild(ball)
+                        ballCount -= 1
+                    }
                 }
             }
         }
@@ -133,6 +137,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if object.name == "good" {
             destroy(ball: ball)
             score += 1
+            ballCount += 1
         } else if object.name == "bad" {
             destroy(ball: ball)
             if score != 0 {
